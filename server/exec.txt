@@ -1,0 +1,12 @@
+backend : uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+celery : celery -A app.core.celery_app.celery_app worker -Q pdf_processing -P solo --loglevel=info --include=app.workers.pipeline
+minIO: cd C:\Users\DELL\Downloads\magriplast-main
+
+
+set "MINIO_ROOT_USER=minioadmin"
+
+set "MINIO_ROOT_PASSWORD=minioadmin"
+.\minio\minio.exe server "C:\Users\DELL\Downloads\magriplast-main\minio\data" --address ":9000" --console-address ":9001"
+
+http://127.0.0.1:9001/login
+frontend : npm run dev

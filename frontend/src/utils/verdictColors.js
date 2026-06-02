@@ -1,0 +1,123 @@
+
+
+export const LINE_VERDICT_STYLES = {
+  MATCH: {
+    bg: "bg-green-50",
+    text: "text-green-800",
+    border: "border-green-200",
+    badge: "bg-green-100 text-green-800",
+    dot: "bg-green-500",
+    label: "Concordant",
+  },
+  MISMATCH: {
+    bg: "bg-red-50",
+    text: "text-red-800",
+    border: "border-red-200",
+    badge: "bg-red-100 text-red-800",
+    dot: "bg-red-500",
+    label: "Écart",
+  },
+  MISSING: {
+    bg: "bg-orange-50",
+    text: "text-orange-800",
+    border: "border-orange-200",
+    badge: "bg-orange-100 text-orange-800",
+    dot: "bg-orange-500",
+    label: "Manquant",
+  },
+  EXTRA: {
+    bg: "bg-purple-50",
+    text: "text-purple-800",
+    border: "border-purple-200",
+    badge: "bg-purple-100 text-purple-800",
+    dot: "bg-purple-500",
+    label: "Supplémentaire",
+  },
+  LOW_CONFIDENCE: {
+    bg: "bg-yellow-50",
+    text: "text-yellow-800",
+    border: "border-yellow-200",
+    badge: "bg-yellow-100 text-yellow-800",
+    dot: "bg-yellow-500",
+    label: "Faible confiance",
+  },
+  PARTIAL_DATA: {
+    bg: "bg-gray-50",
+    text: "text-gray-700",
+    border: "border-gray-200",
+    badge: "bg-gray-100 text-gray-700",
+    dot: "bg-gray-400",
+    label: "Données partielles",
+  },
+  PARTIAL_MATCH: {
+    bg: "bg-sky-50",
+    text: "text-sky-800",
+    border: "border-sky-200",
+    badge: "bg-sky-100 text-sky-800",
+    dot: "bg-sky-500",
+    label: "Concordance partielle",
+  },
+};
+
+export const GLOBAL_VERDICT_STYLES = {
+  VALIDATED: {
+    bg: "bg-green-600",
+    text: "text-white",
+    border: "border-green-700",
+    icon: "✓",
+    label: "Validé",
+    description: "Toutes les lignes concordent. Ensemble de documents conforme.",
+  },
+  PARTIAL: {
+    bg: "bg-orange-500",
+    text: "text-white",
+    border: "border-orange-600",
+    icon: "⚠",
+    label: "Partiel",
+    description: "Certains éléments sont manquants dans la livraison ou la facture.",
+  },
+  REJECTED: {
+    bg: "bg-red-600",
+    text: "text-white",
+    border: "border-red-700",
+    icon: "✗",
+    label: "Rejeté",
+    description: "Écarts critiques détectés. Révision manuelle requise.",
+  },
+  REVIEW: {
+    bg: "bg-yellow-500",
+    text: "text-white",
+    border: "border-yellow-600",
+    icon: "?",
+    label: "À réviser",
+    description: "Extractions à faible confiance ou éléments supplémentaires détectés.",
+  },
+  INCOMPLETE: {
+    bg: "bg-gray-500",
+    text: "text-white",
+    border: "border-gray-600",
+    icon: "–",
+    label: "Incomplet",
+    description: "Un ou plusieurs types de document sont manquants dans le PDF.",
+  },
+  PENDING: {
+    bg: "bg-blue-500",
+    text: "text-white",
+    border: "border-blue-600",
+    icon: "…",
+    label: "En traitement",
+    description: "Le document est en cours de traitement.",
+  },
+};
+
+export const JOB_STATUS_STYLES = {
+  PENDING: { color: "text-gray-500", label: "En attente" },
+  PROCESSING: { color: "text-blue-600", label: "En cours" },
+  CLASSIFYING: { color: "text-blue-600", label: "Classification des pages" },
+  EXTRACTING: { color: "text-blue-600", label: "Extraction des données" },
+  VALIDATING: { color: "text-blue-600", label: "Validation" },
+  MATCHING: { color: "text-blue-600", label: "Appariement" },
+  COMPLETED: { color: "text-green-600", label: "Terminé" },
+  FAILED: { color: "text-red-600", label: "Échoué" },
+  REVIEW_REQUIRED: { color: "text-yellow-600", label: "Révision requise" },
+};
