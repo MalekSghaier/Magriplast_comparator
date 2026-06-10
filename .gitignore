@@ -40,3 +40,10 @@ minio/minio.exe
 # minio binary
 server/minio.exe
 
+### Deployment / backups
+*.tar.gz
+*.bak
+*.bak.*
+*wrongdeploy*
+*backup*
+

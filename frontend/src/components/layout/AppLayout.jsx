@@ -1,7 +1,6 @@
 import { useSidebar } from "../../context/SidebarContext";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
-import FooterCredit from "./FooterCredit";
 
 const W  = 256; // expanded
 const CW = 68;  // collapsed
@@ -82,7 +81,6 @@ export default function AppLayout({ children }) {
         <main style={{ flex: 1, background: "#f4f7fb" }}>
           {children}
         </main>
-        <FooterCredit />
       </div>
     </>
   );

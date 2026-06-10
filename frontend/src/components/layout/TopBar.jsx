@@ -63,22 +63,24 @@ export default function TopBar() {
           </svg>
         </button>
 
-        {/* Logo (visible on desktop and mobile) */}
-        <Link to="/" style={{
-          display: "flex", alignItems: "center", gap: "10px", textDecoration: "none",
+        {/* Mobile logo */}
+        <Link to="/" className="mob-only" style={{
+          display: "flex", alignItems: "center", gap: "8px", textDecoration: "none",
         }}>
-          {/* Bare image only (no container), larger on desktop */}
-          <img
-            src="/logo.png"
-            alt="Magriplast logo"
-            style={{
-              height: "38px",
-              width: "auto",
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
-        
+          <div style={{
+            width: "30px", height: "30px", borderRadius: "7px",
+            background: "linear-gradient(135deg,#1e3a5f,#3e1f6d)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <span style={{ color: "#1e3a5f", fontSize: "0.95rem", fontWeight: 800, letterSpacing: "-0.3px" }}>
+            Magriplast
+          </span>
         </Link>
 
         {/* Desktop page title */}

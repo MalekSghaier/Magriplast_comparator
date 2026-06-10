@@ -1,7 +1,7 @@
 function LegacyReviewPage() {
   const { jobId } = useParams();
   const navigate = useNavigate();
-  const { results, loading, error, refetch } = useJobResults(jobId);
+  const { results, loading, error } = useJobResults(jobId);
 
   const [reviewerId, setReviewerId] = useState("");
   const [notes, setNotes] = useState("");
@@ -11,29 +11,9 @@ function LegacyReviewPage() {
   const [aliasSaving, setAliasSaving] = useState({});
   const [aliasSaved, setAliasSaved] = useState({});
 
-  // Keep aliasSaved in sync with server-side applied aliases so refresh
-  // shows approved state without needing to click again.
-  useEffect(() => {
-    try {
-      const applied = (results?.match_result?.line_verdicts || []).reduce((acc, line) => {
-        if (line.reference_alias_applied) {
-          const externalRef = line.ref_produit_facture || line.ref_produit_bl;
-          const internalRef = line.ref_produit;
-          if (externalRef && internalRef) acc[`${externalRef}:${internalRef}`] = true;
-        }
-        return acc;
-      }, {});
-      if (Object.keys(applied).length) {
-        setAliasSaved((prev) => ({ ...prev, ...applied }));
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, [results]);
-
   const handleSubmit = async (approved) => {
     if (!reviewerId.trim()) {
-      setSubmitError("Veuillez saisir votre nom ou identifiant.");
+      setSubmitError("Please enter your name or reviewer ID.");
       return;
     }
 
@@ -81,7 +61,7 @@ function LegacyReviewPage() {
 
   const handleApproveAlias = async (line) => {
     if (!reviewerId.trim()) {
-      setSubmitError("Veuillez saisir votre nom ou identifiant avant d'approuver un alias.");
+      setSubmitError("Please enter your name or reviewer ID before approving an alias.");
       return;
     }
 
@@ -99,14 +79,6 @@ function LegacyReviewPage() {
         supplierName,
         notes: notes || undefined,
       });
-      // Trigger rematch so the saved alias is applied to the current job
-      try {
-        await rerunMatch(jobId);
-      } catch (e) {
-        // ignore rematch failure but continue to mark saved
-      }
-      // Refresh displayed results
-      try { await refetch(); } catch (e) {}
       setAliasSaved((prev) => ({ ...prev, [key]: true }));
     } catch (err) {
       setSubmitError(err.message);
@@ -125,7 +97,7 @@ function LegacyReviewPage() {
 
   if (error) {
     return (
-      <PageWrapper title="Erreur">
+      <PageWrapper title="Error">
         <Alert variant="error">{error}</Alert>
       </PageWrapper>
     );
@@ -135,9 +107,9 @@ function LegacyReviewPage() {
 
   if (submitted) {
     return (
-      <PageWrapper title="Révision soumise">
-        <Alert variant="success" title="Décision enregistrée">
-          Votre révision a été enregistrée dans le journal d'audit. Redirection…
+      <PageWrapper title="Review Submitted">
+        <Alert variant="success" title="Decision recorded">
+          Your review has been saved to the audit log. Redirecting…
         </Alert>
       </PageWrapper>
     );
@@ -145,8 +117,8 @@ function LegacyReviewPage() {
 
   return (
     <PageWrapper
-      title="Révision humaine"
-      subtitle="Vérifiez les données extraites et les résultats de correspondance, puis approuvez ou rejetez."
+      title="Human Review"
+      subtitle="Review the extracted data and matching results, then approve or reject."
     >
       <div className="space-y-6">
         {/* Back button */}
@@ -155,7 +127,7 @@ function LegacyReviewPage() {
           className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"
         >
           <ArrowLeft size={14} />
-          Retour aux résultats
+          Back to results
         </button>
 
         {/* Verdict */}
@@ -179,7 +151,7 @@ function LegacyReviewPage() {
         {aliasCandidates.length > 0 && (
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h3 className="text-base font-semibold text-gray-900 mb-4">
-              Alias de références à mémoriser
+              Aliases de references a memoriser
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -211,11 +183,11 @@ function LegacyReviewPage() {
                         <td className="py-3 text-right">
                           <button
                             onClick={() => handleApproveAlias(line)}
-                            disabled={saved || aliasSaving[key] || line.reference_alias_applied}
+                            disabled={saved || aliasSaving[key]}
                             className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-blue-700 disabled:bg-gray-300"
                           >
                             {aliasSaving[key] ? <Spinner size="sm" /> : <CheckCircle size={14} />}
-                            {saved || line.reference_alias_applied ? "Enregistré" : "Approuver alias"}
+                            {saved ? "Enregistre" : "Approuver alias"}
                           </button>
                         </td>
                       </tr>
@@ -230,31 +202,31 @@ function LegacyReviewPage() {
         {/* Review form */}
         <div className="bg-white border border-gray-200 rounded-xl p-6">
           <h3 className="text-base font-semibold text-gray-900 mb-4">
-            Soumettre la décision de révision
+            Submit Review Decision
           </h3>
 
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Votre nom / ID évaluateur *
+                Your name / Reviewer ID *
               </label>
               <input
                 type="text"
                 value={reviewerId}
                 onChange={(e) => setReviewerId(e.target.value)}
-                placeholder="ex. Ahmed Benali"
+                placeholder="e.g. Ahmed Benali"
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Notes (optionnelles)
+                Notes (optional)
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Ajoutez des commentaires sur cette décision…"
+                placeholder="Add any comments about this decision…"
                 rows={3}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               />
@@ -271,7 +243,7 @@ function LegacyReviewPage() {
                 className="flex-1 flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 disabled:bg-green-300 text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 {submitting ? <Spinner size="sm" /> : <CheckCircle size={18} />}
-                Approuver
+                Approve
               </button>
 
               <button
@@ -280,12 +252,12 @@ function LegacyReviewPage() {
                 className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 {submitting ? <Spinner size="sm" /> : <XCircle size={18} />}
-                Rejeter
+                Reject
               </button>
             </div>
 
             <p className="text-xs text-gray-400 text-center">
-              Cette décision est définitive et sera enregistrée dans le journal d'audit immuable.
+              This decision is permanent and will be recorded in the immutable audit log.
             </p>
           </div>
         </div>
@@ -319,13 +291,13 @@ import {
 
 // ─── Verdict config ───────────────────────────────────────────────────────────
 const LINE_VERDICT_CFG = {
-  MATCH:          { label: "Concordant",          colors: "bg-emerald-50 text-emerald-700 ring-emerald-200", row: "border-l-emerald-400", rowBg: "" },
-  MISMATCH:       { label: "Écart",               colors: "bg-red-50 text-red-700 ring-red-200",            row: "border-l-red-400",     rowBg: "bg-red-50/40" },
-  MISSING:        { label: "Manquant",            colors: "bg-amber-50 text-amber-700 ring-amber-200",      row: "border-l-amber-400",   rowBg: "bg-amber-50/30" },
-  EXTRA:          { label: "Supplémentaire",      colors: "bg-sky-50 text-sky-700 ring-sky-200",            row: "border-l-sky-400",     rowBg: "bg-sky-50/20" },
-  PARTIAL_DATA:   { label: "Données partielles",  colors: "bg-slate-100 text-slate-500 ring-slate-200",     row: "border-l-slate-300",   rowBg: "" },
-  LOW_CONFIDENCE: { label: "Faible confiance",    colors: "bg-violet-50 text-violet-700 ring-violet-200",   row: "border-l-violet-400",  rowBg: "bg-violet-50/20" },
-  PARTIAL_MATCH:  { label: "Concordance partielle", colors: "bg-orange-50 text-orange-700 ring-orange-200", row: "border-l-orange-400",  rowBg: "bg-orange-50/20" },
+  MATCH:          { label: "Match",          colors: "bg-emerald-50 text-emerald-700 ring-emerald-200", row: "border-l-emerald-400", rowBg: "" },
+  MISMATCH:       { label: "Mismatch",       colors: "bg-red-50 text-red-700 ring-red-200",            row: "border-l-red-400",     rowBg: "bg-red-50/40" },
+  MISSING:        { label: "Missing",        colors: "bg-amber-50 text-amber-700 ring-amber-200",      row: "border-l-amber-400",   rowBg: "bg-amber-50/30" },
+  EXTRA:          { label: "Extra",          colors: "bg-sky-50 text-sky-700 ring-sky-200",            row: "border-l-sky-400",     rowBg: "bg-sky-50/20" },
+  PARTIAL_DATA:   { label: "Partial Data",   colors: "bg-slate-100 text-slate-500 ring-slate-200",     row: "border-l-slate-300",   rowBg: "" },
+  LOW_CONFIDENCE: { label: "Low Confidence", colors: "bg-violet-50 text-violet-700 ring-violet-200",   row: "border-l-violet-400",  rowBg: "bg-violet-50/20" },
+  PARTIAL_MATCH:  { label: "Partial Match",  colors: "bg-orange-50 text-orange-700 ring-orange-200",   row: "border-l-orange-400",  rowBg: "bg-orange-50/20" },
 };
 
 const GLOBAL_VERDICT_CFG = {

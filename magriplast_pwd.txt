@@ -1,0 +1,21 @@
+d9ypVs2OpVDN7qACeJbPqiCsrCHnpIg7opYD2XsMp40=
+
+
+
+mohamed@vps2616595:~$ openssl rand -hex 16
+3783a194ef91f0f7c6f5efcc70668ca0
+mohamed@vps2616595:~$ openssl rand -hex 32
+
+267f65be73979993eeb922d21f9b2017267877fc85a3c356b2796ac6c3486753
+
+
+
+
+
+
+key backend
+(.venv) mohamed@vps2616595:/opt/magriplast/current/server$ openssl rand -hex 32
+13c22acc038e885a9447d5218cdf3c93532b758cc7d7ee0173a90eeca7104535
+
+
+W0fX1ULn87

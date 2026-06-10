@@ -34,13 +34,13 @@ import {
 } from "lucide-react";
 
 const LINE_VERDICT_CFG = {
-  MATCH:          { label: "Concordant",          colors: "bg-emerald-50 text-emerald-700 ring-emerald-200", row: "border-l-emerald-400", rowBg: "" },
-  MISMATCH:       { label: "Écart",              colors: "bg-red-50 text-red-700 ring-red-200",            row: "border-l-red-400",     rowBg: "bg-red-50/40" },
-  MISSING:        { label: "Manquant",           colors: "bg-amber-50 text-amber-700 ring-amber-200",      row: "border-l-amber-400",   rowBg: "bg-amber-50/30" },
-  EXTRA:          { label: "Supplémentaire",     colors: "bg-sky-50 text-sky-700 ring-sky-200",            row: "border-l-sky-400",     rowBg: "bg-sky-50/20" },
-  PARTIAL_DATA:   { label: "Données partielles", colors: "bg-slate-100 text-slate-500 ring-slate-200",     row: "border-l-slate-300",   rowBg: "" },
-  LOW_CONFIDENCE: { label: "Faible confiance",   colors: "bg-violet-50 text-violet-700 ring-violet-200",   row: "border-l-violet-400",  rowBg: "bg-violet-50/20" },
-  PARTIAL_MATCH:  { label: "Concordance partielle", colors: "bg-orange-50 text-orange-700 ring-orange-200", row: "border-l-orange-400",  rowBg: "bg-orange-50/20" },
+  MATCH:          { label: "Match",          colors: "bg-emerald-50 text-emerald-700 ring-emerald-200", row: "border-l-emerald-400", rowBg: "" },
+  MISMATCH:       { label: "Mismatch",       colors: "bg-red-50 text-red-700 ring-red-200",            row: "border-l-red-400",     rowBg: "bg-red-50/40" },
+  MISSING:        { label: "Missing",        colors: "bg-amber-50 text-amber-700 ring-amber-200",      row: "border-l-amber-400",   rowBg: "bg-amber-50/30" },
+  EXTRA:          { label: "Extra",          colors: "bg-sky-50 text-sky-700 ring-sky-200",            row: "border-l-sky-400",     rowBg: "bg-sky-50/20" },
+  PARTIAL_DATA:   { label: "Partial Data",   colors: "bg-slate-100 text-slate-500 ring-slate-200",     row: "border-l-slate-300",   rowBg: "" },
+  LOW_CONFIDENCE: { label: "Low Confidence", colors: "bg-violet-50 text-violet-700 ring-violet-200",   row: "border-l-violet-400",  rowBg: "bg-violet-50/20" },
+  PARTIAL_MATCH:  { label: "Partial Match",  colors: "bg-orange-50 text-orange-700 ring-orange-200",   row: "border-l-orange-400",  rowBg: "bg-orange-50/20" },
 };
 const GLOBAL_VERDICT_CFG = {
   VALIDATED:       { label: "Validé",    bg: "from-emerald-600 to-emerald-700", Icon: CheckCircle2,  desc: "Toutes les lignes concordent. Facture approuvée." },
@@ -967,10 +967,10 @@ export default function ResultsPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <BannerStat value={match_result?.matches}    label="Concordant"    />
-              <BannerStat value={match_result?.mismatches} label="Écart" />
-              <BannerStat value={match_result?.missing}    label="Manquant"  />
-              <BannerStat value={match_result?.extra}      label="Supplémentaire"    />
+              <BannerStat value={match_result?.matches}    label="Match"    />
+              <BannerStat value={match_result?.mismatches} label="Mismatch" />
+              <BannerStat value={match_result?.missing}    label="Missing"  />
+              <BannerStat value={match_result?.extra}      label="Extra"    />
             </div>
           </div>
           {match_result?.total_lines > 0 && (

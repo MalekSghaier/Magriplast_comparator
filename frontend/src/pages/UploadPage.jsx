@@ -51,8 +51,8 @@ export default function UploadPage() {
 
   return (
     <PageWrapper
-      title="Télécharger un document"
-      subtitle="Téléchargez un fichier PDF contenant votre bon de commande, votre bon de livraison et/ou votre facture"
+      title="Upload Document"
+      subtitle="Upload a PDF containing your Bon de Commande, Bon de Livraison, and/or Facture"
     >
       <div className="max-w-2xl mx-auto">
 
@@ -69,11 +69,12 @@ export default function UploadPage() {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-semibold text-blue-900 leading-tight">
-              Formats de documents acceptés
+              Accepted document formats
             </p>
             <p className="text-xs text-blue-600 mt-1 leading-relaxed">
-              Téléchargez un seul fichier PDF contenant un ou plusieurs des documents suivants : bon de commande (BC),
-              Bon de Livraison (BL), ou Facture. Le système détectera et classera automatiquement chaque page.
+              Upload a single PDF containing one or more of: Bon de Commande (BC),
+              Bon de Livraison (BL), or Facture. The system will automatically detect
+              and classify each page.
             </p>
           </div>
         </div>
@@ -105,10 +106,10 @@ export default function UploadPage() {
             </div>
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-0.5">
-                Étape 1 sur 2
+                Step 1 of 2
               </p>
               <p className="text-sm font-semibold text-gray-800">
-                Sélectionnez votre document
+                Select your document
               </p>
             </div>
           </div>
@@ -171,7 +172,7 @@ export default function UploadPage() {
                     <p className="text-xs text-gray-400 mt-0.5">
                       {formatFileSize(selectedFile.size)}
                       <span className="mx-1.5 text-gray-200">·</span>
-                      Document PDF
+                      PDF document
                     </p>
                   </div>
 
@@ -198,10 +199,10 @@ export default function UploadPage() {
                   <div className="px-5 pb-4">
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-xs font-medium text-gray-400">
-                        Téléversement
+                        Uploading
                       </span>
                       <span className="text-xs font-semibold text-blue-600">
-                        En cours…
+                        In progress…
                       </span>
                     </div>
                     <div
@@ -228,7 +229,7 @@ export default function UploadPage() {
                   <div className="px-5 pb-4">
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-xs font-medium text-gray-400">
-                        Téléversement terminé
+                        Upload complete
                       </span>
                       <span className="text-xs font-semibold text-emerald-600">
                         100%
@@ -280,7 +281,7 @@ export default function UploadPage() {
                   className="animate-spin flex-shrink-0"
                 />
                 <p className="text-sm font-semibold text-emerald-700">
-                  Téléversement réussi — redirection vers le traitement…
+                  Upload successful — redirecting to processing…
                 </p>
               </div>
             </div>
@@ -301,7 +302,7 @@ export default function UploadPage() {
             />
             <div className="min-w-0">
               <p className="text-sm font-semibold text-red-800">
-                Échec du téléversement
+                Upload failed
               </p>
               <p className="text-xs text-red-500 mt-0.5 leading-relaxed">
                 {uploadError}
@@ -335,7 +336,7 @@ function StatusChip({ status }) {
         className="text-[11px] font-semibold px-2.5 py-1 rounded-full"
         style={{ background: "#f3f4f6", color: "#9ca3af" }}
       >
-        Prêt
+        Ready
       </span>
     );
   }
@@ -346,7 +347,7 @@ function StatusChip({ status }) {
         style={{ background: "#dbeafe", color: "#1d4ed8" }}
       >
         <Loader2 size={10} className="animate-spin" strokeWidth={2.5} />
-        Téléversement
+        Uploading
       </span>
     );
   }
@@ -357,7 +358,7 @@ function StatusChip({ status }) {
         style={{ background: "#d1fae5", color: "#065f46" }}
       >
         <CheckCircle2 size={10} strokeWidth={2.5} />
-        Terminé
+        Done
       </span>
     );
   }
@@ -368,7 +369,7 @@ function StatusChip({ status }) {
         style={{ background: "#fee2e2", color: "#991b1b" }}
       >
         <X size={10} strokeWidth={2.5} />
-        Échoué
+        Failed
       </span>
     );
   }
@@ -399,12 +400,12 @@ function UploadButton({ status, onClick }) {
     >
       {isUploading ? (
         <>
-                      <Loader2 size={16} strokeWidth={2.5} className="animate-spin" />
-          Téléversement…
+          <Loader2 size={16} strokeWidth={2.5} className="animate-spin" />
+          Uploading…
         </>
       ) : (
         <>
-          Traiter le document
+          Process Document
           <ArrowRight size={16} strokeWidth={2.5} />
         </>
       )}
