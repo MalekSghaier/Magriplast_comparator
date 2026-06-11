@@ -322,7 +322,7 @@ export default function Sidebar({ mobile = false }) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}>
-                Powered By Ulytech{"\u00AE"}
+                 Développé par UlyTech  {"\u00AE"}
               </p>
             </div>
             <button onClick={handleLogout} title="Se déconnecter" style={{

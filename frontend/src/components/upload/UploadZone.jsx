@@ -69,21 +69,21 @@ export default function UploadZone({ onFileSelected, disabled }) {
           <div>
             {isDragActive && !isDragReject ? (
               <p className="text-blue-600 font-semibold text-lg">
-                Drop the PDF here
+                Glissez-déposez votre PDF ici
               </p>
             ) : isDragReject ? (
               <p className="text-red-600 font-semibold text-lg">
-                Only PDF files are accepted
+                Seuls les fichiers PDF sont acceptés
               </p>
             ) : (
               <>
                 <p className="text-gray-700 font-semibold text-lg">
-                  Drag & drop your PDF here
+                  Glissez-déposez votre PDF ici
                 </p>
                 <p className="text-gray-400 text-sm mt-1">
                   or{" "}
                   <span className="text-blue-600 underline">
-                    browse to select
+                    parcourir pour sélectionner
                   </span>
                 </p>
               </>
@@ -92,7 +92,7 @@ export default function UploadZone({ onFileSelected, disabled }) {
 
           <div className="flex items-center gap-2 text-xs text-gray-400 mt-2">
             <FileText size={14} />
-            <span>PDF only · Max 50MB · Up to 50 pages</span>
+            <span>PDF uniquement · 50 MO max · 50 pages maximum</span>
           </div>
         </div>
       </div>

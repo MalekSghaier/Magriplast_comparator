@@ -39,6 +39,7 @@ async def get_job_results(job_id: str, db: AsyncSession = Depends(get_db)):
     documents_out = []
     for doc in job.documents:
         documents_out.append({
+            "id": str(doc.id),
             "doc_type": doc.doc_type,
             "pages": doc.page_numbers,
             "ref_document": doc.ref_document,
@@ -55,6 +56,7 @@ async def get_job_results(job_id: str, db: AsyncSession = Depends(get_db)):
             "total_ttc": doc.total_ttc,
             "lines": [
                 {
+                    "id": str(li.id),
                     "line_number": li.line_number,
                     "ref_produit": li.ref_produit,
                     "designation": li.designation,

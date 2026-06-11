@@ -128,10 +128,11 @@ export default function LoginPage() {
         background: `linear-gradient(155deg, #0f2240 0%, #1e3a5f 35%, #2a1854 70%, #3e1f6d 100%)`,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "space-between",
         padding: "64px 56px",
         position: "relative",
         overflow: "hidden",
+        height: "100vh",
       }}>
         {/* Grain overlay */}
         <div style={{
@@ -178,21 +179,17 @@ export default function LoginPage() {
           zIndex: 0, pointerEvents: "none",
         }} />
 
+        {/* ── Main content ── */}
         <div style={{ position: "relative", zIndex: 1, animation: "fadeUp 0.7s ease both" }}>
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: "13px", marginBottom: "52px" }}>
-            <div style={{
-              width: "48px", height: "48px", borderRadius: "14px",
-              background: "rgba(255,255,255,0.10)",
-              border: "1px solid rgba(255,255,255,0.20)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              backdropFilter: "blur(12px)",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)",
-            }}>
-              <ScanText size={22} color="white" strokeWidth={1.75} />
-            </div>
+            <img
+              src="/logo_magri.png"
+              alt="Magriplast"
+              style={{ height: "28px", width: "auto", display: "block" }}
+            />
             <span style={{
-              color: "white", fontSize: "1.2rem", fontWeight: 700,
+              color: "white", fontSize: "1.8rem", fontWeight: 800,
               letterSpacing: "-0.3px",
               fontFamily: "'DM Sans', sans-serif",
             }}>
@@ -253,21 +250,36 @@ export default function LoginPage() {
           })}
         </div>
 
-        {/* Status badge */}
-        <div style={{
-          position: "absolute", bottom: "28px", left: "56px",
-          display: "flex", alignItems: "center", gap: "8px",
-          zIndex: 1, animation: "fadeIn 0.6s ease 0.9s both",
-        }}>
-          <div style={{
-            width: "7px", height: "7px", borderRadius: "50%",
-            background: "#4caf50",
-            boxShadow: "0 0 0 3px rgba(76,175,80,0.25)",
-          }} />
-          <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.73rem", letterSpacing: "0.03em" }}>
-            Système opérationnel
-          </span>
+        {/* ── Bottom: UlyTech + Système opérationnel ── */}
+        <div style={{ position: "relative", zIndex: 1, animation: "fadeIn 0.6s ease 0.9s both" }}>
+          {/* UlyTech AI */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+            <div style={{ height: "1px", flex: 1, background: "rgba(255,255,255,0.1)" }} />
+            <span style={{
+              color: "rgba(255,255,255,0.3)",
+              fontSize: "0.72rem",
+              letterSpacing: "0.05em",
+              whiteSpace: "nowrap",
+            }}>
+              Développé par{" "}
+              <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 700 }}>UlyTech AI</span>
+            </span>
+            <div style={{ height: "1px", flex: 1, background: "rgba(255,255,255,0.1)" }} />
+          </div>
+
+          {/* Système opérationnel */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <div style={{
+              width: "7px", height: "7px", borderRadius: "50%",
+              background: "#4caf50",
+              boxShadow: "0 0 0 3px rgba(76,175,80,0.25)",
+            }} />
+            <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.73rem", letterSpacing: "0.03em" }}>
+              Système opérationnel
+            </span>
+          </div>
         </div>
+
       </div>
 
       {/* ── Form panel ───────────────────────────────────────────────── */}
@@ -278,6 +290,8 @@ export default function LoginPage() {
         justifyContent: "center",
         background: "#eef2f8",
         padding: "40px 24px",
+        overflow: "hidden",   
+        height: "100vh",      
         backgroundImage: "radial-gradient(ellipse at 70% 20%, rgba(30,58,95,0.06) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(62,31,109,0.05) 0%, transparent 55%)",
       }}>
         <div style={{

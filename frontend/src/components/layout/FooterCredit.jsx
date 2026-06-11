@@ -15,7 +15,7 @@ export default function FooterCredit({ fixed = false, light = false }) {
         pointerEvents: "none",
       }}
     >
-      Powered By UlyTech (R) 2026
+      (R) 2026 UlyTech .Tous droits réservés.
     </footer>
   );
 }

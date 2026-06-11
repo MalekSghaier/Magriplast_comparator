@@ -36,7 +36,7 @@ export default function JobStatusPoller({ jobId }) {
     return (
       <div className="flex items-center justify-center py-20 gap-3 text-gray-400">
         <Spinner />
-        <span className="text-sm font-medium">Loading job status…</span>
+        <span className="text-sm font-medium">Chargement du statut en cours…</span>
       </div>
     );
   }
@@ -108,10 +108,10 @@ export default function JobStatusPoller({ jobId }) {
             <Spinner size="md" />
             <div>
               <p className="text-sm font-semibold text-blue-900">
-                Processing your document
+                Traitement de votre document
               </p>
               <p className="text-xs text-blue-400 mt-0.5">
-                  Processing usually takes 2–5 minutes, depending on the complexity of the PDF
+                  Le traitement prend généralement 2 à 5 minutes selon la complexité du PDF
               </p>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function JobStatusPoller({ jobId }) {
         <div className="px-7 py-5 border-t border-gray-100">
           <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600">
             <Spinner size="sm" />
-            Redirecting to results…
+            Redirection vers les résultats…
           </div>
         </div>
       )}
@@ -188,10 +188,10 @@ function ProcessingSteps({ currentStatus }) {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold text-gray-500">
-            Overall progress
+            Progression globale
           </span>
           <span className="text-xs font-semibold text-gray-600 tabular-nums">
-            {completedCount} / {STEPS.length} steps
+            {completedCount} / {STEPS.length} étapes
           </span>
         </div>
         <div

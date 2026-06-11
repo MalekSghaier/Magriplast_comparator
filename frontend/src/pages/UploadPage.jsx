@@ -51,8 +51,8 @@ export default function UploadPage() {
 
   return (
     <PageWrapper
-      title="Upload Document"
-      subtitle="Upload a PDF containing your Bon de Commande, Bon de Livraison, and/or Facture"
+      title="Glissez votre fichier"
+      subtitle="Déposez votre PDF ici — Bon de Commande, Bon de Livraison ou Facture"
     >
       <div className="max-w-2xl mx-auto">
 
@@ -69,12 +69,11 @@ export default function UploadPage() {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-semibold text-blue-900 leading-tight">
-              Accepted document formats
+              Formats acceptés
             </p>
             <p className="text-xs text-blue-600 mt-1 leading-relaxed">
-              Upload a single PDF containing one or more of: Bon de Commande (BC),
-              Bon de Livraison (BL), or Facture. The system will automatically detect
-              and classify each page.
+              Un seul PDF suffit — le système identifie et classe automatiquement vos Bons de Commande, Bons de Livraison et Factures
+
             </p>
           </div>
         </div>
@@ -106,10 +105,10 @@ export default function UploadPage() {
             </div>
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-0.5">
-                Step 1 of 2
+                Etape 1 sur 2
               </p>
               <p className="text-sm font-semibold text-gray-800">
-                Select your document
+                Sélectionnez votre document
               </p>
             </div>
           </div>
@@ -199,10 +198,10 @@ export default function UploadPage() {
                   <div className="px-5 pb-4">
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-xs font-medium text-gray-400">
-                        Uploading
+                        Téléchargement
                       </span>
                       <span className="text-xs font-semibold text-blue-600">
-                        In progress…
+                        En cours…
                       </span>
                     </div>
                     <div
@@ -229,7 +228,7 @@ export default function UploadPage() {
                   <div className="px-5 pb-4">
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-xs font-medium text-gray-400">
-                        Upload complete
+                        Téléchargement terminé
                       </span>
                       <span className="text-xs font-semibold text-emerald-600">
                         100%
@@ -281,7 +280,7 @@ export default function UploadPage() {
                   className="animate-spin flex-shrink-0"
                 />
                 <p className="text-sm font-semibold text-emerald-700">
-                  Upload successful — redirecting to processing…
+                  Téléchargement réussi — redirection vers le traitement…
                 </p>
               </div>
             </div>
@@ -302,7 +301,7 @@ export default function UploadPage() {
             />
             <div className="min-w-0">
               <p className="text-sm font-semibold text-red-800">
-                Upload failed
+                Téléchargement échoué
               </p>
               <p className="text-xs text-red-500 mt-0.5 leading-relaxed">
                 {uploadError}
@@ -347,7 +346,7 @@ function StatusChip({ status }) {
         style={{ background: "#dbeafe", color: "#1d4ed8" }}
       >
         <Loader2 size={10} className="animate-spin" strokeWidth={2.5} />
-        Uploading
+        Téléchargement
       </span>
     );
   }
@@ -358,7 +357,7 @@ function StatusChip({ status }) {
         style={{ background: "#d1fae5", color: "#065f46" }}
       >
         <CheckCircle2 size={10} strokeWidth={2.5} />
-        Done
+        Terminé
       </span>
     );
   }
@@ -369,7 +368,7 @@ function StatusChip({ status }) {
         style={{ background: "#fee2e2", color: "#991b1b" }}
       >
         <X size={10} strokeWidth={2.5} />
-        Failed
+        Échoué
       </span>
     );
   }
@@ -401,11 +400,11 @@ function UploadButton({ status, onClick }) {
       {isUploading ? (
         <>
           <Loader2 size={16} strokeWidth={2.5} className="animate-spin" />
-          Uploading…
+          Téléchargement…
         </>
       ) : (
         <>
-          Process Document
+           Lancer l'analyse
           <ArrowRight size={16} strokeWidth={2.5} />
         </>
       )}
